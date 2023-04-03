@@ -1,5 +1,5 @@
 /**
- * (C) Copyright IBM Corporation 2019.
+ * (C) Copyright IBM Corporation 2019, 2023.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 package io.openliberty.tools.maven.utils;
 
+import org.apache.maven.plugin.logging.Log;
 import org.codehaus.mojo.pluginsupport.MojoSupport;
 
 import io.openliberty.tools.common.CommonLoggerI;
@@ -23,11 +24,8 @@ public class CommonLogger extends MojoSupport implements CommonLoggerI {
 
     private static CommonLogger logger = null;
 
-    public static CommonLogger getInstance() {
-        if (logger == null) {
-            logger = new CommonLogger();
-        }
-        return logger;
+    public CommonLogger(Log mojoLogger) {
+        setLog(mojoLogger);
     }
 
     @Override
